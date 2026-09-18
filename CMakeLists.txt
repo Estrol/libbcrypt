@@ -13,7 +13,7 @@
 
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
-project(bcrypt)
+project(libbcrypt_fork)
 
 enable_language(CXX C ASM)
 
@@ -61,20 +61,16 @@ add_library(
 	${SRCFILES}
 )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${MYLIB_VERSION_STRING} SOVERSION ${MYLIB_VERSION_MAJOR})
+set_target_properties(libbcrypt_fork PROPERTIES VERSION ${MYLIB_VERSION_STRING} SOVERSION ${MYLIB_VERSION_MAJOR})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER include/bcrypt/BCrypt.hpp)
+set_target_properties(libbcrypt_fork PROPERTIES PUBLIC_HEADER include/bcrypt/BCrypt.hpp)
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-target_include_directories(${PROJECT_NAME} PRIVATE src)
-
-add_executable( ${PROJECT_NAME}_test ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-
-target_link_libraries( ${PROJECT_NAME}_test ${PROJECT_NAME})
+target_include_directories(libbcrypt_fork PRIVATE include)
+target_include_directories(libbcrypt_fork PRIVATE src)
 
 include(GNUInstallDirs)
 
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS libbcrypt_fork
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
